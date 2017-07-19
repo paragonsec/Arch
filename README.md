@@ -21,7 +21,7 @@ Either download this conkyrc file or copy and paste the code to your own. Place 
 ```
 /home/<user>/.conkyrc
 ```
-
+![alt text](Conky/conkyScreenshot.png "Conky Setup")
 
 
 ## Future Additions
