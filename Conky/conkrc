@@ -1,0 +1,112 @@
+####################
+# File: conkyrc
+#
+#
+# Author: paragonsec
+####################
+
+########---PARAMS---########
+background yes
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 0.25
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 240
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_right
+gap_x 12
+gap_y 12
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+color1 C4BB9D
+
+########---OUTPUT---########
+TEXT
+
+
+
+#----------#
+#|SYSTEM  |#
+#----------#
+${font SANS:size=20}${color1}${alignc}${time %l:%M:%S}
+${font SANS:size=17}${alignc}${time %a, %d %B %Y} 
+${font SANS:size=9}SYSTEM INFO${hr}
+Kernel: $alignr${exec uname -s -r}
+Textual Shell: $alignr${exec echo $SHELL}
+Hostname:$alignr$nodename
+Uptime:$alignr$uptime
+
+CPU${hr}
+CPU usage:$alignr${cpu cpu0}%
+${cpugraph}
+
+RAM${hr}
+RAM Usage: $alignr$mem/$memmax
+Percentage of using RAM: $alignr${memperc}%
+${membar}
+
+SDD${hr}
+/dev/sda space:$alignr${fs_used /}/${fs_size /}
+Percentage of used filesystem: $alignr${fs_used_perc}%
+${fs_bar}
+Swap Usage: $alignr${swap}/${swapmax}
+Percentage of using swap: $alignr${swapperc}%
+${swapbar}
+
+HDD${hr}
+/dev/sdb space:$alignr${fs_used /storage}/${fs_size /storage}
+
+#-----------#
+#|PROCESSES|#
+#-----------#
+${color1}${alignc}PROCESSES 
+NAME $alignr PID      $alignr CPU Load
+${hr}
+${top name 1} $alignr ${top pid 1}    $alignr ${top cpu 1}
+${top name 2} $alignr ${top pid 2}    $alignr ${top cpu 2}
+${top name 3} $alignr ${top pid 3}    $alignr ${top cpu 3}
+${top name 4} $alignr ${top pid 4}    $alignr ${top cpu 4}
+${top name 5} $alignr ${top pid 5}    $alignr ${top cpu 5}
+${top name 6} $alignr ${top pid 6}    $alignr ${top cpu 6}
+${top name 7} $alignr ${top pid 7}    $alignr ${top cpu 7}
+${top name 8} $alignr ${top pid 8}    $alignr ${top cpu 8}
+${top name 9} $alignr ${top pid 9}    $alignr ${top cpu 9}
+
+#----------#
+#|NETWORKS|#
+#----------#
+${color1}${alignc}NETWORK STATS
+${hr}
+#
+${if_up wlp6s0}\
+Connected to: $alignr${wireless_essid wlp6s0}
+AP MAC Address: $alignr${wireless_ap wlp6s0}
+Wireless Card Mode: $alignr${wireless_mode wlp6s0} 
+Local IP [LAN]:$alignr${addr wlp6s0}
+# [!!] External IP updates itself every 12 hours, You can change the value to 3600 if you want that it updates every 1 hour
+External IP [WAN]: $alignr${exec curl -s www.icanhazip.com; echo }
+Download Speed:$alignr${downspeed wlp6s0} kb/s
+${downspeedgraph wlp6s0}
+Upload Speed:$alignr${upspeed wlp6s0} kb/s
+${upspeedgraph wlp6s0}
+
+#[!!]Restoring default color[/!!]
+${color white}
+
+#---OUTPUT ENDS---#
+#+++REFRESH: 0.25 ms+++#
